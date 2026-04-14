@@ -1,46 +1,143 @@
-# Getting Started with Create React App
+# Video Call Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React frontend for group video calling application with WebRTC and MediaSoup integration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Group Video Calls**: Multi-participant video conferencing
+- **WebRTC Integration**: Real-time audio/video streaming
+- **MediaSoup Client**: SFU-based media transport
+- **Responsive UI**: Mobile-friendly video grid layout
+- **Room Management**: Create and join video call rooms
+- **Real-time Communication**: Socket.io integration
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Usage
 
-### `npm test`
+### Development
+```bash
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Production Build
+```bash
+npm run build
+```
 
-### `npm run build`
+The app runs on port 3000 by default and connects to the server at `http://localhost:8000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Configuration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Environment Variables
+- `REACT_APP_SERVER_URL`: WebSocket server URL (default: http://localhost:8000)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Browser Requirements
+- **HTTPS**: Required for camera/microphone access in production
+- **WebRTC Support**: Chrome, Firefox, Safari, Edge
+- **Permissions**: Camera and microphone access required
 
-### `npm run eject`
+## Architecture
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Components
+- **App**: Main application component with video call logic
+- **MediaSoupClient**: Wrapper for mediasoup-client library
+- **Video Grid**: Responsive layout for participant videos
+- **Room Management**: Create/join room functionality
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### WebRTC Flow
+1. Connect to server via Socket.io
+2. Create/join room
+3. Initialize MediaSoup device
+4. Create WebRTC transports
+5. Get local media stream
+6. Publish media to SFU
+7. Subscribe to remote participants
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **react**: UI framework
+- **socket.io-client**: Real-time communication
+- **mediasoup-client**: WebRTC SFU client
+- **typescript**: Type safety
 
-## Learn More
+## Development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Project Structure
+```
+client/
+  src/
+    App.tsx             # Main application component
+    App.css             # Application styles
+    services/
+      mediasoupClient.ts # MediaSoup client wrapper
+  package.json          # Dependencies and scripts
+  README.md             # This file
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Scripts
+- `npm start` - Development server
+- `npm run build` - Production build
+- `npm test` - Run tests
+
+## Usage Guide
+
+### Creating a Room
+1. Enter your name
+2. Click "Create Room"
+3. Share the Room ID with others
+4. Allow camera/microphone access
+
+### Joining a Room
+1. Enter your name and Room ID
+2. Click "Join Room"
+3. Allow camera/microphone access
+
+### During Call
+- **Video Grid**: See all participants
+- **Local Video**: Your feed with blue border
+- **Leave Call**: Exit the room
+- **Toggle Video**: Start/stop your video
+
+## Production Deployment
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Deploy to Static Hosting
+The `build` folder contains the static files ready for deployment to any static hosting service (Netlify, Vercel, S3, etc.).
+
+### Environment Configuration
+```bash
+# Production environment
+REACT_APP_SERVER_URL=https://your-server.com
+```
+
+## Browser Compatibility
+
+- **Chrome**: Full support
+- **Firefox**: Full support
+- **Safari**: WebRTC support (HTTPS required)
+- **Edge**: Full support
+
+## Troubleshooting
+
+### Camera/Microphone Issues
+- Check browser permissions
+- Ensure HTTPS in production
+- Use supported browsers
+
+### Connection Issues
+- Verify server is running
+- Check firewall settings
+- Ensure correct server URL
+
+## License
+
+MIT License
