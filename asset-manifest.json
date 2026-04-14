@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/groupVideoReact/static/css/main.91ec9f12.css",
+    "main.js": "/groupVideoReact/static/js/main.11dd20b1.js",
+    "static/js/54.4d776d4b.chunk.js": "/groupVideoReact/static/js/54.4d776d4b.chunk.js",
+    "static/js/453.470c3363.chunk.js": "/groupVideoReact/static/js/453.470c3363.chunk.js",
+    "index.html": "/groupVideoReact/index.html",
+    "main.91ec9f12.css.map": "/groupVideoReact/static/css/main.91ec9f12.css.map",
+    "main.11dd20b1.js.map": "/groupVideoReact/static/js/main.11dd20b1.js.map",
+    "54.4d776d4b.chunk.js.map": "/groupVideoReact/static/js/54.4d776d4b.chunk.js.map",
+    "453.470c3363.chunk.js.map": "/groupVideoReact/static/js/453.470c3363.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91ec9f12.css",
+    "static/js/main.11dd20b1.js"
+  ]
+}
