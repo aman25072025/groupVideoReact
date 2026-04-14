@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/groupVideoReact/static/css/main.2b90ec2b.css",
-    "main.js": "/groupVideoReact/static/js/main.bb3531f8.js",
+    "main.css": "/groupVideoReact/static/css/main.e3306d19.css",
+    "main.js": "/groupVideoReact/static/js/main.95e48f21.js",
     "static/js/54.4d776d4b.chunk.js": "/groupVideoReact/static/js/54.4d776d4b.chunk.js",
     "static/js/453.470c3363.chunk.js": "/groupVideoReact/static/js/453.470c3363.chunk.js",
     "index.html": "/groupVideoReact/index.html",
-    "main.2b90ec2b.css.map": "/groupVideoReact/static/css/main.2b90ec2b.css.map",
-    "main.bb3531f8.js.map": "/groupVideoReact/static/js/main.bb3531f8.js.map",
+    "main.e3306d19.css.map": "/groupVideoReact/static/css/main.e3306d19.css.map",
+    "main.95e48f21.js.map": "/groupVideoReact/static/js/main.95e48f21.js.map",
     "54.4d776d4b.chunk.js.map": "/groupVideoReact/static/js/54.4d776d4b.chunk.js.map",
     "453.470c3363.chunk.js.map": "/groupVideoReact/static/js/453.470c3363.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b90ec2b.css",
-    "static/js/main.bb3531f8.js"
+    "static/css/main.e3306d19.css",
+    "static/js/main.95e48f21.js"
   ]
 }
