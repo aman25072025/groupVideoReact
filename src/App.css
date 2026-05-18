@@ -209,7 +209,7 @@ body {
   box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
 }
 
-.call-controls button {
+.control-btn {
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -218,24 +218,62 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   min-width: 120px;
-}
-
-.call-controls button:first-child {
-  background-color: #dc3545;
   color: white;
 }
 
-.call-controls button:first-child:hover {
+.control-btn--active {
+  background-color: #495057;
+}
+
+.control-btn--active:hover:not(:disabled) {
+  background-color: #343a40;
+}
+
+.control-btn--off {
+  background-color: #dc3545;
+}
+
+.control-btn--off:hover:not(:disabled) {
   background-color: #c82333;
 }
 
-.call-controls button:last-child {
+.control-btn--leave {
   background-color: #6c757d;
-  color: white;
 }
 
-.call-controls button:last-child:hover {
+.control-btn--leave:hover {
   background-color: #5a6268;
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.media-off-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.media-off-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(220, 53, 69, 0.9);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 3;
 }
 
 @media (max-width: 768px) {
@@ -263,7 +301,7 @@ body {
     padding: 15px;
   }
   
-  .call-controls button {
+  .control-btn {
     width: 100%;
   }
 }

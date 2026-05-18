@@ -1,50 +1,43 @@
 import React, { useEffect, useRef } from 'react';
 
-const VideoElement = ({ 
-  stream, 
-  muted = false, 
-  label, 
-  participantId, 
-  videoRefs 
-}) => {
+const VideoElement = ({ stream, muted = false, label, trackKey = '' }) => {
   const videoRef = useRef(null);
-  const previousStreamRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    
     if (!video) return;
 
-    // Only update srcObject if the stream has actually changed
-    if (stream !== previousStreamRef.current) {
-      // Stop the old stream if it exists
-      if (previousStreamRef.current && video.srcObject !== stream) {
-        const oldStream = video.srcObject;
-        if (oldStream) {
-          oldStream.getTracks().forEach(track => track.stop());
-        }
+    const start = async () => {
+      if (!stream) {
+        video.srcObject = null;
+        return;
       }
 
-      // Set the new stream
-      video.srcObject = stream || null;
-      
-      // Store the current stream for comparison
-      previousStreamRef.current = stream || null;
-    }
+      video.srcObject = stream;
 
-    // Store video reference if participantId is provided
-    if (participantId && videoRefs) {
-      videoRefs.current[participantId] = video;
-    }
-
-    // Cleanup
-    return () => {
-      if (video.srcObject) {
-        const currentStream = video.srcObject;
-        currentStream.getTracks().forEach(track => track.stop());
+      try {
+        await video.play();
+      } catch {
+        // Retry when tracks start receiving media
       }
     };
-  }, [stream, participantId, videoRefs]);
+
+    const onTrackChange = () => start();
+
+    start();
+
+    stream?.addEventListener('addtrack', onTrackChange);
+    stream?.addEventListener('removetrack', onTrackChange);
+
+    for (const track of stream?.getTracks() || []) {
+      track.onunmute = () => start();
+    }
+
+    return () => {
+      stream?.removeEventListener('addtrack', onTrackChange);
+      stream?.removeEventListener('removetrack', onTrackChange);
+    };
+  }, [stream, trackKey]);
 
   return (
     <>
@@ -57,7 +50,7 @@ const VideoElement = ({
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          backgroundColor: stream ? 'transparent' : '#000'
+          backgroundColor: '#1a1a1a'
         }}
       />
       <div className="video-label">{label}</div>
